@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lucene全文检索工具</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap-table.css">
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap-table.js"></script>
+    <script src="/js/bootstrap-table-zh-CN.js"></script>
+</head>
+<body>
+<div class="container">
+    <h1>Lucene全文检索工具</h1>
+    <div id="the_div"></div>
+    <p class="lead">若为初次使用，请点击建立索引，索引文件较大，请耐心等待索引完成提示!</p>
+    <div class="alert alert-info" role="alert">请将需要建立索引的文件放置于用户主目录下的
+        <mark>lucenedir</mark>
+        文件夹，生成的索引文件将放置于
+        <mark>luceneidx</mark>
+        文件夹
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <button type="button" class="btn btn-primary btn-lg" id="index">建立索引</button>
+        </div>
+        <div class="col-lg-6">
+            <div class="input-group">
+                <input type="text" class="form-control" id="keyword" placeholder="搜索">
+                <span class="input-group-btn">
+        <button class="btn btn-default" type="button" id="search">Go!</button>
+      </span>
+            </div>
+        </div>
+    </div>
+    <table id="table"
+           data-height="460"
+           data-pagination="true"
+           data-search="true"
+           data-striped="true"
+    >
+        <thead>
+        </thead>
+    </table>
+</div>
+<script>
+    //    var queryParams = function (params) {
+    //        var param = {
+    //            keyword: $("#keyword").val()
+    //            pageIndex: Math.ceil(params.offset / params.limit) + 1,
+    //            pageSize: params.limit,
+    //            order: params.order,
+    //            ordername: params.sort,
+    //            startDateTime: $("#dateSearch .startDate").val(),
+    //            endDateTime: $("#dateSearch .endDate").val(),
+    //            search: $("#dateSearch .imuserid").val()
+    //        };
+    //        return param;
+    //    };
+    //触发搜索按钮的点击事件
+    $("#keyword").keydown(function (e) {
+        if (e.which == 13) {
+            $('#search').click();
+        }
+    });
+
+    $("#index").click(function () {
+        $.get("indexFiles", function (data) {
+            alert(data.message);
+        });
+    });
+
+    $("#search").click(function () {
+//        使用jquery ajax查询
+//        $.ajax({
+//            type: "POST",
+//            url: "searchFiles",
+//            data: {keyword: $("#keyword").val()},
+        //tostring显示内容，message显示json数据
+//            success: function (msg) {
+//                alert(msg.message);
+        //必须使用destroy方法,否则无法刷新
+        $('#table').bootstrapTable('destroy').bootstrapTable({
+            method: 'post',
+            url: '/searchFiles/?' + 'keyword=' + $("#keyword").val(),
+            sortable: false,
+//                    clickToSelect: true,
+            pageSize: 50,
+            cache: false,
+            showRefresh: true,
+            showToggle: true,
+            dataType: "json",
+//                    contentType: 'application/json,charset=utf-8',
+//                    queryParams: {keyword: "wang"},
+            columns: [{
+                field: 'id',
+                title: 'Id'
+            }, {
+                field: 'path',
+                title: 'Path'
+            }, {
+                field: 'content',
+                title: 'Content'
+            }]
+        });
+    });
+</script>
+</body>
+</html>
