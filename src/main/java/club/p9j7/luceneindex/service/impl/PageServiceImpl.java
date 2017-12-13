@@ -139,7 +139,7 @@ public class PageServiceImpl implements PageService {
         ScoreDoc[] scoreDocs = null;
         try {
             //定义缓存1000条记录
-            topDocs = searcher.search(query, 1000);
+            topDocs = searcher.search(query, 10000);
             logger.info("符合条件的记录总数为：" + topDocs.totalHits);
             //缓存的1000条记录
             scoreDocs = topDocs.scoreDocs;
