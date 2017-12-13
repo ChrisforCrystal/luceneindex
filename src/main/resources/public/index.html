@@ -3,12 +3,12 @@
 <head>
     <title>Lucene全文检索工具</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/bootstrap-table.css">
-    <script src="/js/jquery.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/bootstrap-table.js"></script>
-    <script src="/js/bootstrap-table-zh-CN.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-table.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-table.js"></script>
+    <script src="js/bootstrap-table-zh-CN.js"></script>
 </head>
 <body>
 <div class="container">
@@ -83,7 +83,7 @@
         //必须使用destroy方法,否则无法刷新
         $('#table').bootstrapTable('destroy').bootstrapTable({
             method: 'post',
-            url: '/searchFiles/?' + 'keyword=' + $("#keyword").val(),
+            url: 'searchFiles/?' + 'keyword=' + $("#keyword").val(),
             sortable: false,
 //                    clickToSelect: true,
             pageSize: 50,
