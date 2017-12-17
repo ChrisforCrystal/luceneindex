@@ -7,8 +7,8 @@
 - 代码有详细的注释，可以作为新手入门**springboot**和**lucene**的实例
 
 # 运行界面
-![image](http://github.com/p9j7/luceneindex/raw/master/images/luceneindex1.png)
-![image](http://github.com/p9j7/luceneindex/raw/master/images/luceneindex2.png)
+![image](https://github.com/p9j7/luceneindex/raw/master/images/luceneindex1.png)
+![image](https://github.com/p9j7/luceneindex/raw/master/images/luceneindex2.png)
 
 # How to start
 1.下载项目到本地`git clone https://github.com/P9J7/luceneindex`  
