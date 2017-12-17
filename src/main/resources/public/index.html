@@ -66,9 +66,12 @@
     });
 
     $("#index").click(function () {
-        $.get("indexFiles", function (data) {
-            alert(data.message);
-        });
+        var msg = "确认要重新建立索引吗？原来建立的索引会被删除!!!";
+        if (confirm(msg) == true) {
+            $.get("indexFiles", function (data) {
+                alert(data.message);
+            });
+        }
     });
 
     $("#search").click(function () {
